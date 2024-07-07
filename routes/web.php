@@ -41,6 +41,6 @@ Route::post('/', [FirebaseController::class, 'login'])->name('login.submit');
 
 // Route::get('/', [FirebaseController::class, 'Dashboard']);
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('auth.login');
 })->name('login');
