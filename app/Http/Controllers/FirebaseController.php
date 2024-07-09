@@ -197,6 +197,62 @@ class FirebaseController extends Controller
 
         return response()->stream($callback, 200, $headers);
     }
+    public function exportFeedingHistory3(Request $request)
+    {
+        $month = $request->input('month');
+        $year = $request->input('year');
+
+        // Initialize variables for total feed volume grams and data array
+        $totalFeedVolumeGrams = 0;
+        $data = [];
+
+        // Retrieve data from Firebase
+        $reference = $this->database->getReference('FeedingHistory/Servo3');
+        $snapshot = $reference->getSnapshot();
+
+        if ($snapshot->exists()) {
+            foreach ($snapshot->getValue() as $key => $value) {
+                // Check if the timestamp matches the selected month and year
+                $timestamp = strtotime($value['timestamp']);
+                if (date('m', $timestamp) == $month && date('Y', $timestamp) == $year) {
+                    $feedVolumeGrams = $value['feed_volume_grams'] ?? 0;
+                    $totalFeedVolumeGrams += $feedVolumeGrams;
+
+                    $data[] = [
+                        'feed_volume_grams' => $feedVolumeGrams,
+                        'time_of_day' => $value['time_of_day'] ?? 'N/A',
+                        'timestamp' => $value['timestamp'] ?? 'N/A'
+                    ];
+                }
+            }
+        }
+
+        // Add total feed volume row to the data array
+        $data[] = [
+            'Total Feed Volume (grams)' =>  $totalFeedVolumeGrams,
+
+        ];
+
+        // Generate CSV file
+        $fileName = 'feeding_history_' . $month . '_' . $year . '.csv';
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ];
+
+        $callback = function() use ($data) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, ['Feed Volume (grams)', 'Time of Day', 'Timestamp']);
+
+            foreach ($data as $row) {
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
     public function exportFeedingHistory1(Request $request)
     {
         $month = $request->input('month');

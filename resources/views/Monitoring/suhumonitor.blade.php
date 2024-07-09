@@ -6,6 +6,31 @@
         <span class="bg-primary text-white p-2 rounded rounded-lg">Monitoring Suhu</span>
     </div>
 
+    <p class="text-right"><strong>Mode:</strong> {{ $controllingData['mode'] }}</p>
+
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm">
+                <span>Kipas</span>
+                @if ($controllingData['kipas'] == "off")
+                    <button class="btn btn-warning">{{ $controllingData['kipas'] }}</button>
+                @else
+                    <button class="btn btn-success">{{ $controllingData['kipas'] }}</button>
+                @endif
+            </div>
+            <div class="col-sm">
+                <span>Lampu</span>
+                @if ($controllingData['lampu'] == "off")
+                    <button class="btn btn-warning">{{ $controllingData['lampu'] }}</button>
+                @else
+                    <button class="btn btn-success">{{ $controllingData['lampu'] }}</button>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Formulir Filter -->
     <form method="GET" action="{{ route('getDataSuhu') }}">
         <div class="form-group">
