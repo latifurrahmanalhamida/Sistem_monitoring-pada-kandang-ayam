@@ -20,12 +20,10 @@
             <tbody>
                 @foreach ($feeds as $feed)
                 <tr>
-
                     <td>{{ $feed['feed_volume_grams'] ?? '0' }} Gram</td>
-                    @if (isset($prestarter))
-                    <td>{{ $prestarter['jam'] }} : {{ $prestarter['menit'] }}</td>
-                    <td>{{ $prestarter['jam sore'] }} : {{ $prestarter['menit sore'] }}</td>
-                    @endif
+                    <td>{{ $feed['time_of_day'] ?? '0' }} </td>
+                    <td>{{ $feed['timestamp'] ?? '0' }} </td>
+           
                 </tr>
                 @endforeach
             </tbody>

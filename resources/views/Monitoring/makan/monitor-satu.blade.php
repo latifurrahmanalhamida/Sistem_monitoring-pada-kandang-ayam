@@ -13,8 +13,8 @@
             <thead>
                 <tr>
                     <th scope="col">Keluaran</th>
-                    <th scope="col">Jam Pagi</th>
-                    <th scope="col">Jam Sore</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Tanggal Dan Jam</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,10 +22,13 @@
                 <tr>
 
                     <td>{{ $feed['feed_volume_grams'] ?? '0' }} Gram</td>
-                    @if (isset($prestarter))
+                    <td>{{ $feed['time_of_day'] ?? '0' }} </td>
+                    <td>{{ $feed['timestamp'] ?? '0' }} </td>
+
+                    {{-- @if (isset($prestarter))
                     <td>{{ $prestarter['jam'] }} : {{ $prestarter['menit'] }}</td>
                     <td>{{ $prestarter['jam sore'] }} : {{ $prestarter['menit sore'] }}</td>
-                    @endif
+                    @endif --}}
                 </tr>
                 @endforeach
             </tbody>
