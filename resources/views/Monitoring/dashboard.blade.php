@@ -14,7 +14,7 @@
                         @if (@isset($makan1))
                         <div class="numbers">
                             <p class="card-category text-left text-success font-weight-bold">Sisa Pakan Ayam</p>
-                            <p class="card-title text-center my-4">{{ round($makan1['volume']) }} %</p>
+                            <p class="card-title text-center my-4">{{ $makan1['volume'] }} %</p>
                         </div>
                     </div>
                     @endif
@@ -26,7 +26,7 @@
                         @if (isset($minum1))
                         <div class="numbers">
                             <p class="card-category text-left text-success font-weight-bold">Volume Air 1</p>
-                            <p class="card-title text-center my-4">{{round($minum1['volume'])  }} %</p>
+                            <p class="card-title text-center my-4">{{$minum1['volume']  }} %</p>
                         </div>
                         @endif
                     </div>
@@ -55,7 +55,7 @@
                         @if (@isset($makan2))
                         <div class="numbers">
                             <p class="card-category text-left text-success font-weight-bold">Sisa Pakan Ayam</p>
-                            <p class="card-title text-center my-4">{{ round($makan2['volume']) }} %</p>
+                            <p class="card-title text-center my-4">{{ $makan2['volume'] }} %</p>
                         </div>
                         @endif
                     </div>
@@ -67,7 +67,7 @@
                     @if (isset($minum2))
                         <div class="numbers">
                             <p class="card-category text-left text-success font-weight-bold">Volume Air 2</p>
-                            <p class="card-title text-center my-4">{{round($minum2['volume'])  }} %</p>
+                            <p class="card-title text-center my-4">{{$minum2['volume']  }} %</p>
                         </div>
                         @endif
                     </div>
@@ -96,7 +96,7 @@
                         @if (@isset($makan3))
                         <div class="numbers">
                             <p class="card-category text-left text-success font-weight-bold">Sisa Pakan Ayam</p>
-                            <p class="card-title text-center my-4">{{ round($makan3['volume']) }} %</p>
+                            <p class="card-title text-center my-4">{{ $makan3['volume'] }} %</p>
                         </div>
                         @endif
                     </div>

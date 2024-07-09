@@ -59,7 +59,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ round($minum1['volume'], 2) }} %</td>
+                        <td>{{ $minum1['volume'] }} %</td>
                         @if ($minum1['status'] == "WATER EMPTY")
                         <td><span class="bg-danger text-white p-2">{{ $minum1['status'] }}</span></td>
                         @else
@@ -86,7 +86,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ round($minum2['volume'], 2) }} %</td>
+                        <td>{{ $minum2['volume'] }} %</td>
                         @if ($minum2['status'] == "WATER EMPTY")
                         <td><span class="bg-danger text-white p-2">{{ $minum2['status'] }}</span></td>
                         @else

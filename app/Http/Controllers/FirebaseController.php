@@ -47,7 +47,7 @@ class FirebaseController extends Controller
 
         if ($makanSnapshot->exists()) {
             $makanData = $makanSnapshot->getValue();
-            $feedVolume1 = isset($makanData['feedVolume1']['volume']) ? round($makanData['feedVolume1']['volume'], 2) : null;
+            $feedVolume1 = isset($makanData['feedVolume1']['volume']) ? $makanData['feedVolume1']['volume'] : null;
             $prestarter = isset($makanData['pre-startter']) ? $makanData['pre-startter'] : null;
         } else {
             return response()->json(['status' => 'fail', 'message' => 'Tidak ada data ditemukan di Controlling_makan']);
@@ -84,7 +84,7 @@ class FirebaseController extends Controller
 
         if ($makanSnapshot->exists()) {
             $makanData = $makanSnapshot->getValue();
-            $feedVolume2 = isset($makanData['feedVolume2']['volume']) ? round($makanData['feedVolume2']['volume'], 2) : null;
+            $feedVolume2 = isset($makanData['feedVolume2']['volume']) ? $makanData['feedVolume2']['volume'] : null;
             $prestarter = isset($makanData['starter']) ? $makanData['starter'] : null;
         } else {
             return response()->json(['status' => 'fail', 'message' => 'Tidak ada data ditemukan di Controlling_makan']);
@@ -117,7 +117,7 @@ class FirebaseController extends Controller
 
         if ($makanSnapshot->exists()) {
             $makanData = $makanSnapshot->getValue();
-            $feedVolume3 = isset($makanData['feedVolume3']['volume']) ? round($makanData['feedVolume3']['volume'], 3) : null;
+            $feedVolume3 = isset($makanData['feedVolume3']['volume']) ? $makanData['feedVolume3']['volume'] : null;
             $prestarter = isset($makanData['finisher']) ? $makanData['finisher'] : null;
         } else {
             return response()->json(['status' => 'fail', 'message' => 'Tidak ada data ditemukan di Controlling_makan']);
