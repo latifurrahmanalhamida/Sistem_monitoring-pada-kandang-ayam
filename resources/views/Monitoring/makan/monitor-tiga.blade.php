@@ -6,15 +6,15 @@
         <span class="bg-primary text-white p-2 rounded rounded-lg">Monitoring Makan</span>
     </div>
     <div>
-        <h4>Sisa Pakan : {{ $feedVolume3 }}</h4>
+        <h4>Ketersediaan Pakan Tangki {{ $feedVolume3 }}%</h4>
     </div>
     <div class="card">
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Keluaran</th>
-                    <th scope="col">Jam Pagi</th>
-                    <th scope="col">Jam Sore</th>
+                    <th scope="col">STATUS</th>
+                    <th scope="col">TANGGAL DAN JAM</th>
                 </tr>
             </thead>
             <tbody>

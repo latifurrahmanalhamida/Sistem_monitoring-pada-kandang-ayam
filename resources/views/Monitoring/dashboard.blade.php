@@ -13,7 +13,7 @@
                     <div class="card-body">
                         @if (@isset($makan1))
                         <div class="numbers">
-                            <p class="card-category text-left text-success font-weight-bold">Sisa Pakan Ayam</p>
+                            <p class="card-category text-left text-success font-weight-bold">Ketersediaan Pakan</p>
                             <p class="card-title text-center my-4">{{ $makan1['volume'] }} %</p>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                         @if (isset($minum1))
                         <div class="numbers">
                             <p class="card-category text-left text-success font-weight-bold">Volume Air 1</p>
-                            <p class="card-title text-center my-4">{{$minum1['volume']  }} %</p>
+                            <p class="card-title text-center my-4">{{$minum1['volume']  }} Ml</p>
                         </div>
                         @endif
                     </div>
@@ -46,16 +46,16 @@
             </div>
         </div>
         <div class="my-4 ">
-            <span class=" bg-danger text-white p-2 rounded rounded-lg">Monitoring Kandang Ayam Sedang</span>
+            <span class=" bg-danger text-white p-2 rounded rounded-lg">Monitoring Kandang Ayam Besar</span>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-body">
-                        @if (@isset($makan2))
+                        @if (@isset($makan3))
                         <div class="numbers">
-                            <p class="card-category text-left text-success font-weight-bold">Sisa Pakan Ayam</p>
-                            <p class="card-title text-center my-4">{{ $makan2['volume'] }} %</p>
+                            <p class="card-category text-left text-success font-weight-bold">Ketersediaan Pakan</p>
+                            <p class="card-title text-center my-4">{{ $makan3['volume'] }} %</p>
                         </div>
                         @endif
                     </div>
@@ -67,7 +67,7 @@
                     @if (isset($minum2))
                         <div class="numbers">
                             <p class="card-category text-left text-success font-weight-bold">Volume Air 2</p>
-                            <p class="card-title text-center my-4">{{$minum2['volume']  }} %</p>
+                            <p class="card-title text-center my-4">{{$minum2['volume']  }} Ml</p>
                         </div>
                         @endif
                     </div>
@@ -87,16 +87,16 @@
             </div>
         </div>
         <div class="my-4 ">
-            <span class=" bg-danger text-white p-2 rounded rounded-lg">Monitoring Kandang Ayam Besar</span>
+            <span class=" bg-danger text-white p-2 rounded rounded-lg">Monitoring Kandang Ayam Sedang</span>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-body">
-                        @if (@isset($makan3))
+                        @if (@isset($makan2))
                         <div class="numbers">
-                            <p class="card-category text-left text-success font-weight-bold">Sisa Pakan Ayam</p>
-                            <p class="card-title text-center my-4">{{ $makan3['volume'] }} %</p>
+                            <p class="card-category text-left text-success font-weight-bold">Ketersediaan Pakan</p>
+                            <p class="card-title text-center my-4">{{ $makan2['volume'] }} %</p>
                         </div>
                         @endif
                     </div>
@@ -107,7 +107,7 @@
                     <div class="card-body">
                         @if (isset($suhu3))
                         <div class="numbers">
-                            <p class="card-category text-left text-success font-weight-bold">Suhu Sensor 2</p>
+                            <p class="card-category text-left text-success font-weight-bold">Suhu Sensor 3</p>
                             <p class="card-title text-center my-4">{{ $suhu3 }} °C</p>
                         </div>
                     @endif

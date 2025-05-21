@@ -6,7 +6,7 @@
         <span class="bg-primary text-white p-2 rounded rounded-lg">Monitoring Makan</span>
     </div>
     <div>
-        <h4>Sisa Pakan : {{ $feedVolume1 }}</h4>
+        <h4>Ketersediaan Pakan Tangki : {{ $feedVolume1 }} %</h4>
     </div>
     <div class="card">
         <table class="table">

@@ -1,0 +1,19 @@
+
+.table-custom {
+    min-width: 1000px;
+    width: 100%;
+}
+
+.table-custom th, .table-custom td {
+    text-align: center;
+    padding: 15px;
+}
+
+.thead-dark th {
+    background-color: #343a40;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}

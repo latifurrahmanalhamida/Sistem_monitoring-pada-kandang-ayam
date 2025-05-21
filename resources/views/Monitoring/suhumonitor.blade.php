@@ -1,3 +1,4 @@
+<!-- resources/views/your-view.blade.php -->
 @extends('layouts.master')
 
 @section('content')
@@ -5,32 +6,6 @@
     <div class="my-4">
         <span class="bg-primary text-white p-2 rounded rounded-lg">Monitoring Suhu</span>
     </div>
-
-    <p class="text-right"><strong>Mode:</strong> {{ $controllingData['mode'] }}</p>
-
-
-<div class="card mb-4">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm">
-                <span>Kipas</span>
-                @if ($controllingData['kipas'] == "off")
-                    <button class="btn btn-warning">{{ $controllingData['kipas'] }}</button>
-                @else
-                    <button class="btn btn-success">{{ $controllingData['kipas'] }}</button>
-                @endif
-            </div>
-            <div class="col-sm">
-                <span>Lampu</span>
-                @if ($controllingData['lampu'] == "off")
-                    <button class="btn btn-warning">{{ $controllingData['lampu'] }}</button>
-                @else
-                    <button class="btn btn-success">{{ $controllingData['lampu'] }}</button>
-                @endif
-            </div>
-        </div>
-    </div>
-</div>
     <!-- Formulir Filter -->
     <form method="GET" action="{{ route('getDataSuhu') }}">
         <div class="form-group">
@@ -68,32 +43,44 @@
     </form>
 
     <!-- Tabel Sensor Data -->
-    <div class="card">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Suhu</th>
-                    <th scope="col">Timestamp</th>
-                    <th scope="col">Kelembapan</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($sensorData as $sensor)
-                <tr>
-                    <td>{{ $sensor['suhu'] }} °C</td>
-                    <td>{{ $sensor['timestamp'] }}</td>
-                    <td>{{ $sensor['kelembaban'] }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="card mt-4">
+        <div class="card-body">
+            <table class="table table-bordered table-hover table-responsive table-full-width table-custom">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Category</th>
+                        <th>Kelembaban</th>
+                        <th>Suhu</th>
+                        <th>Timestamp</th>
+                        <th>Kipas</th>
+                        <th>Lampu</th>
+                        <th>Mode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sensorData as $data)
+                    <tr>
+                        <td>{{ $data['category'] }}</td>
+                        <td>{{ $data['kelembaban'] }}%</td>
+                        <td>{{ $data['suhu'] }}°C</td>
+                        <td>{{ $data['timestamp'] }}</td>
+                        <td>{{ $data['kipas'] }}</td>
+                        <td>{{ $data['lampu'] }}</td>
+                        <td>{{ $data['mode'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Chart untuk Setiap Sensor -->
     @foreach ($latestSensorData as $sensorId => $sensorData)
     <div class="card mb-4">
-        <h5 class="card-title">Data Terbaru dari Sensor {{ $sensorId }}</h5>
-        <canvas id="sensorChart{{ $sensorId }}" width="400" height="100"></canvas>
+        <div class="card-body">
+            <h5 class="card-title">Data Terbaru dari Sensor {{ $sensorId }}</h5>
+            <canvas id="sensorChart{{ $sensorId }}" width="400" height="100"></canvas>
+        </div>
     </div>
 
     <script>

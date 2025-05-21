@@ -53,13 +53,13 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Keluaran</th>
+                        <th scope="col">Volume</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ $minum1['volume'] }} %</td>
+                        <td>{{ $minum1['volume'] }} Ml </td>
                         @if ($minum1['status'] == "WATER EMPTY")
                         <td><span class="bg-danger text-white p-2">{{ $minum1['status'] }}</span></td>
                         @else
@@ -80,13 +80,13 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Keluaran</th>
+                        <th scope="col">Volume</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ $minum2['volume'] }} %</td>
+                        <td>{{ $minum2['volume'] }} Ml</td>
                         @if ($minum2['status'] == "WATER EMPTY")
                         <td><span class="bg-danger text-white p-2">{{ $minum2['status'] }}</span></td>
                         @else
@@ -224,5 +224,4 @@
     });
 </script>
 @endif
-
 @endsection

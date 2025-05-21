@@ -1,0 +1,29 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    margin: auto;
+}
+table {
+    width: 100%;
+    margin-top: 20px;
+}
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 20px;
+    font-size: 1.2em;
+}
+th {
+    background-color: #343a40;
+    color: #fff;
+}
+td {
+    background-color: #f2f2f2;
+}

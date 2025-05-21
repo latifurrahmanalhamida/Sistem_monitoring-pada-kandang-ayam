@@ -276,7 +276,8 @@ class FirebaseController extends Controller
 
                     $data[] = [
                         'feed_volume_grams' => $feedVolumeGrams,
-
+                        'time_of_day' => $value['time_of_day'] ?? 'N/A',
+                        'timestamp' => $value['timestamp'] ?? 'N/A'
                     ];
                 }
             }
@@ -339,18 +340,31 @@ class FirebaseController extends Controller
             }
         }
 
-        // Ambil data dari 'monitoring minum' untuk Minum1 dan Minum2
-        $reference = $this->database->getReference('monitoring minum');
-        $snapshot = $reference->getSnapshot();
+        // Fetch data for Minum1 and Minum2 from 'monitoring_minum'
+    $minum1 = null;
+    $minum2 = null;
 
-        $minum1 = null;
-        $minum2 = null;
+$minumReference = $this->database->getReference('monitoring_minum');
+$minumSnapshot = $minumReference->getSnapshot();
 
-        if ($snapshot->exists()) {
-            $dataMinum = $snapshot->getValue();
-            $minum1 = isset($dataMinum['minum1']) ? $dataMinum['minum1'] : null;
-            $minum2 = isset($dataMinum['minum2']) ? $dataMinum['minum2'] : null;
-        }
+if ($minumSnapshot->exists()) {
+    $dataMinum = $minumSnapshot->getValue();
+    $minum1 = isset($dataMinum['minum1']) ? $dataMinum['minum1'] : null;
+    $minum2 = isset($dataMinum['minum2']) ? $dataMinum['minum2'] : null;
+}
+
+// Fetch data for Pompa1 and Pompa2 from 'control_pompa'
+$pompa1 = null;
+$pompa2 = null;
+
+$pompaReference = $this->database->getReference('control_pompa');
+$pompaSnapshot = $pompaReference->getSnapshot();
+
+if ($pompaSnapshot->exists()) {
+    $dataPompa = $pompaSnapshot->getValue();
+    $pompa1 = isset($dataPompa['pompa1']) ? $dataPompa['pompa1'] : null;
+    $pompa2 = isset($dataPompa['pompa2']) ? $dataPompa['pompa2'] : null;
+}
 
         return view('monitoring.monitorminum', [
             'minum1' => $minum1,
@@ -382,7 +396,7 @@ class FirebaseController extends Controller
     }
 
     // Retrieve and process drinking data
-    $reference = $this->database->getReference('monitoring minum');
+    $reference = $this->database->getReference('monitoring_minum');
     $snapshot = $reference->getSnapshot();
     if ($snapshot->exists()) {
         $data = $snapshot->getValue();
@@ -395,9 +409,9 @@ class FirebaseController extends Controller
     $snapshot = $reference->getSnapshot();
     if ($snapshot->exists()) {
         $data = $snapshot->getValue();
-        $suhu1 = $data['suhu']['sensor1']['suhu'] ?? null;
-        $suhu2 = $data['suhu']['sensor2']['suhu'] ?? null;
-        $suhu3 = $data['suhu']['sensor3']['suhu'] ?? null;
+        $suhu1 = $data['AyamKecil']['suhu'] ?? null;
+        $suhu2 = $data['AyamSedang']['suhu'] ?? null;
+        $suhu3 = $data['AyamDewasa']['suhu'] ?? null;
     } else {
         return response()->json(['status' => 'fail', 'message' => 'No data found']);
     }
@@ -468,16 +482,24 @@ public function getDataSuhu(Request $request)
 
     $sensorData = [];
 
-    if (isset($data['suhu'])) {
-        foreach ($data['suhu'] as $sensorId => $sensorDetails) {
-            $sensorData[] = [
-                'sensor' => $sensorId,
-                'kelembaban' => $sensorDetails['kelembaban'] ?? null,
-                'suhu' => $sensorDetails['suhu'] ?? null,
-                'timestamp' => $sensorDetails['timestamp'] ?? null
-            ];
-        }
+    $categories = ['AyamDewasa', 'AyamKecil', 'AyamSedang'];
+    
+    $sensorData = [];
+foreach ($categories as $category) {
+    if (isset($data[$category])) {
+        $sensorDetails = $data[$category];
+        $sensorData[] = [
+            'category' => $category,
+            'kelembaban' => $sensorDetails['kelembaban'] ?? null,
+            'suhu' => $sensorDetails['suhu'] ?? null,
+            'timestamp' => $sensorDetails['timestamp'] ?? null,
+            'kipas' => $sensorDetails['kipas'] ?? null,
+            'lampu' => $sensorDetails['lampu'] ?? null,
+            'mode' => $sensorDetails['mode'] ?? null
+        ];
     }
+}
+
 
     // Ambil data dari History_suhu
     $historyReference = $this->database->getReference('History_suhu');
